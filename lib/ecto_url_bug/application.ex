@@ -8,12 +8,10 @@ defmodule EctoUrlBug.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: EctoUrlBug.Worker.start_link(arg)
-      # {EctoUrlBug.Worker, arg}
+      EctoUrlBug.Repo,
+      {EctoUrlBug.RepoManager, %{soft_limit: 10, hard_limit: 20}}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: EctoUrlBug.Supervisor]
     Supervisor.start_link(children, opts)
   end

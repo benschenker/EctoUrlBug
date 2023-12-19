@@ -1,21 +1,21 @@
 version: "3"
 services:
-  views_database:
+  ecto_url_bug_database:
     image: postgres
     environment:
-      - POSTGRES_USER=views
-      - POSTGRES_PASSWORD=views
+      - POSTGRES_USER=ecto_url_bug
+      - POSTGRES_PASSWORD=ecto_url_bug
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U views"]
+      test: ["CMD-SHELL", "pg_isready -U ecto_url_bug"]
       interval: 1s
       retries: 50
     networks:
       - foundation
     ports:
-      - 25433:5432
+      - 35432:5432
     volumes:
-      - views-db-data:/var/lib/postgresql/data
+      - ecto-url-bug-db-data:/var/lib/postgresql/data
 networks:
   foundation:
 volumes:
-  views-db-data:
+  ecto-url-bug-db-data:
