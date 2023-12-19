@@ -1,0 +1,21 @@
+version: "3"
+services:
+  views_database:
+    image: postgres
+    environment:
+      - POSTGRES_USER=views
+      - POSTGRES_PASSWORD=views
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U views"]
+      interval: 1s
+      retries: 50
+    networks:
+      - foundation
+    ports:
+      - 25433:5432
+    volumes:
+      - views-db-data:/var/lib/postgresql/data
+networks:
+  foundation:
+volumes:
+  views-db-data:
