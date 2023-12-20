@@ -41,7 +41,6 @@ defmodule EctoUrlBug.RepoManager do
 
           config
           |> Keyword.merge(updated_config)
-          |> Keyword.delete(:url)
 
         _ ->
           config
@@ -49,6 +48,7 @@ defmodule EctoUrlBug.RepoManager do
 
     config
     |> Keyword.put(:name, nil)
+    |> Keyword.put(:url, nil)
     |> Keyword.put(:database, workspace_database)
   end
 
